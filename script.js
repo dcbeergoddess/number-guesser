@@ -8,14 +8,22 @@ const generateTarget = () => {
   return num;
 };
 
+const getAbsoluteDistance = (num1, num2) => {
+  return Math.abs(num1 - num2);
+};
+
 const compareGuesses = (humanGuess, computerGuess, targetNumber) => {
+  if (humanGuess < 0 || humanGuess > 9) {
+    alert('Pick a number between 0-9');
+  }
   if (
-    Math.abs(humanGuess - targetNumber) ===
-    Math.abs(computerGuess - targetNumber)
+    getAbsoluteDistance(humanGuess, targetNumber) ===
+    getAbsoluteDistance(computerGuess, targetNumber)
   ) {
     return true;
   } else if (
-    Math.abs(humanGuess - targetNumber) < Math.abs(computerGuess - targetNumber)
+    getAbsoluteDistance(humanGuess, targetNumber) <
+    getAbsoluteDistance(computerGuess, targetNumber)
   ) {
     return true;
   } else {
@@ -31,4 +39,8 @@ const updateScore = winner => {
   } else {
     return 'Error';
   }
+};
+
+const advanceRound = () => {
+  currentRoundNumber += 1;
 };
